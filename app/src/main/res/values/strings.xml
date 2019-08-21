@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Parking</string>
+    <string name="button_slot1">RED</string>
+    <string name="button_slot2">YELLOW</string>
+    <string name="button_slot3">GREEN</string>
+    <string name="slot1_button">Slot1</string>
+    <string name="slot2_button">Slot2</string>
+    <string name="slot3_button">Slot3</string>
+    <string name="name_edit">Name</string>
+    <string name="license_plate">License Plate</string>
+    <string name="car_brand">Car Brand</string>
+    <string name="tel_number">Tel. Number</string>
+</resources>
