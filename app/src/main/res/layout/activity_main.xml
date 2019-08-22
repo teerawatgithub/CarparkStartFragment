@@ -12,7 +12,7 @@
             android:layout_height="match_parent"
             tools:context=".MainActivity">
         <Button
-                android:text="@={parking.name}"
+                android:text="@={parking.licensePlate}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/slot1_button"
@@ -23,7 +23,7 @@
                 android:layout_marginStart="16dp" android:fontFamily="@font/roboto"
                 android:background="@color/stateAvailable"/>
         <Button
-                android:text="@string/slot2_button"
+                android:text="@={parking.licensePlate}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/slot2_button"
@@ -34,7 +34,7 @@
                 android:fontFamily="@font/roboto" android:background="@color/stateAvailable"
                 android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/name_edit_text"/>
         <Button
-                android:text="@string/slot3_button"
+                android:text="@={parking.licensePlate}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/slot3_button"
@@ -43,55 +43,78 @@
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto" android:background="@color/stateAvailable"/>
         <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@string/name_edit"
+                android:text="@={parking.name}"
                 android:ems="10"
                 android:id="@+id/name_edit_text"
-                style="@android:style/Widget.AutoCompleteTextView" app:layout_constraintTop_toBottomOf="@+id/slot1_button"
+                style="@android:style/Widget.AutoCompleteTextView"
+                app:layout_constraintTop_toBottomOf="@+id/slot1_button"
                 app:layout_constraintBottom_toTopOf="@+id/license_plate_edit_text"
-                android:layout_marginStart="@dimen/margin_wide1"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="@dimen/margin_wide1"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="@dimen/margin_wide1"/>
+                app:layout_constraintStart_toStartOf="@+id/slot1_button"
+                app:layout_constraintEnd_toEndOf="@+id/slot3_button" android:layout_marginTop="@dimen/margin_wide1"
+                android:textAlignment="center" android:layout_marginStart="@dimen/margin_wide2"
+                android:layout_marginEnd="@dimen/margin_wide2" android:layout_width="wrap_content"/>
         <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:inputType="textPersonName"
-                android:text="@string/license_plate"
-                android:ems="10"
-                android:id="@+id/license_plate_edit_text"
-                style="@android:style/Widget.AutoCompleteTextView" app:layout_constraintTop_toBottomOf="@+id/name_edit_text"
-                app:layout_constraintBottom_toTopOf="@+id/car_brand_edit_text"
-                android:layout_marginStart="@dimen/margin_wide1"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="@dimen/margin_wide1"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="@dimen/margin_wide2"
-                android:layout_marginBottom="@dimen/margin_wide2"/>
-        <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@string/car_brand"
+                android:text="@={parking.licensePlate}"
+                android:ems="10"
+                android:id="@+id/license_plate_edit_text"
+                style="@android:style/Widget.AutoCompleteTextView"
+                app:layout_constraintTop_toBottomOf="@+id/name_edit_text"
+                app:layout_constraintBottom_toTopOf="@+id/car_brand_edit_text"
+                android:layout_marginStart="@dimen/margin_wide2"
+                app:layout_constraintStart_toStartOf="@+id/slot1_button"
+                app:layout_constraintEnd_toEndOf="@+id/slot3_button" android:layout_marginTop="@dimen/margin_wide2"
+                android:layout_marginBottom="@dimen/margin_wide2" android:textAlignment="center"
+                android:layout_marginEnd="@dimen/margin_wide2" android:layout_width="wrap_content"/>
+        <EditText
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="@={parking.carBrand}"
                 android:ems="10"
                 android:id="@+id/car_brand_edit_text"
                 style="@android:style/Widget.AutoCompleteTextView"
                 app:layout_constraintTop_toBottomOf="@+id/license_plate_edit_text"
                 app:layout_constraintBottom_toTopOf="@+id/tel_number_edit_text"
-                android:layout_marginStart="@dimen/margin_wide1"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="@dimen/margin_wide1"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="@dimen/margin_wide2"/>
+                android:layout_marginStart="@dimen/margin_wide2"
+                app:layout_constraintStart_toStartOf="@+id/slot1_button"
+                app:layout_constraintEnd_toEndOf="@+id/slot3_button"
+                android:layout_marginBottom="@dimen/margin_wide2" android:textAlignment="center"
+                android:layout_marginEnd="@dimen/margin_wide2" android:layout_width="wrap_content"/>
         <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@string/tel_number"
+                android:text="@={parking.telNumber}"
                 android:ems="10"
                 android:id="@+id/tel_number_edit_text"
                 style="@android:style/Widget.AutoCompleteTextView"
                 app:layout_constraintTop_toBottomOf="@+id/car_brand_edit_text"
-                android:layout_marginStart="@dimen/margin_wide1"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="@dimen/margin_wide1"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:layout_marginStart="@dimen/margin_wide2"
+                app:layout_constraintStart_toStartOf="@+id/slot1_button" android:layout_marginEnd="@dimen/margin_wide2"
+                app:layout_constraintEnd_toEndOf="@+id/slot3_button" android:layout_marginTop="@dimen/margin_wide2"
+                android:textAlignment="center" android:layout_width="wrap_content"/>
+        <Button
+                android:text="@string/update_button"
+                android:layout_height="wrap_content"
+                android:id="@+id/update_button"
+                app:layout_constraintStart_toStartOf="@+id/tel_number_edit_text"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/delete_button" android:layout_marginTop="@dimen/margin_wide2"
+                app:layout_constraintTop_toBottomOf="@+id/tel_number_edit_text"
+                android:layout_marginStart="@dimen/margin_wide2" android:layout_marginEnd="@dimen/margin_wide1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.00999999" android:background="@android:color/holo_orange_light"
+                android:fontFamily="@font/roboto" android:layout_width="wrap_content"/>
+        <Button
+                android:text="@string/delete_button"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete_button" app:layout_constraintStart_toEndOf="@+id/update_button"
+                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="@+id/tel_number_edit_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/update_button"
+                android:layout_marginStart="@dimen/margin_wide1" android:background="@android:color/holo_red_dark"
+                android:fontFamily="@font/roboto" android:layout_marginEnd="@dimen/margin_wide2"
+                android:layout_width="wrap_content"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

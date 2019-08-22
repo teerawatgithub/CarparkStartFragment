@@ -10,4 +10,6 @@
     <string name="license_plate">License Plate</string>
     <string name="car_brand">Car Brand</string>
     <string name="tel_number">Tel. Number</string>
+    <string name="update_button">Update</string>
+    <string name="delete_button">Delete</string>
 </resources>
