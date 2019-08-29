@@ -18,11 +18,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        parkingBlackEnd.add(Parking("jessica", "DC-1040", "Tesla", "0871280311", true, 1))
+        parkingBlackEnd.add(Parking(" ", " ", " ", " ", false, 1))
         parkingBlackEnd.add(Parking(" ", " ", " ", " ", false, 2))
         parkingBlackEnd.add(Parking(" ", " ", " ", " ", false, 3))
         parkingBlackEnd.add(Parking("Name", "Licen plate", "Car brand", "Tel.", false, 4))
         parking = Parking("Name", "Licen plate", "Car brand", "Tel.", false, 4)
+        binding.parking = parking
+        changeColorSlotButton()
+
         binding.apply {
             slot1Button.setOnClickListener{
                 current = 1
@@ -63,8 +66,27 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        binding.parking = parking
 
+
+    }
+
+    private fun changeColorSlotButton() {
+        for (i in 0 until 3){
+            if (parkingBlackEnd[i].status){
+                when (i){
+                    0 -> slot1_button.setBackgroundColor(-0x10000)
+                    1 -> slot2_button.setBackgroundColor(-0x10000)
+                    2 -> slot3_button.setBackgroundColor(-0x10000)
+                }
+            }else{
+                when (i){
+                    0 -> slot1_button.setBackgroundColor(-0xff0100)
+                    1 -> slot2_button.setBackgroundColor(-0xff0100)
+                    2 -> slot3_button.setBackgroundColor(-0xff0100)
+
+                }
+            }
+        }
     }
 
     private fun showInfo(view: View, i: Int) {
