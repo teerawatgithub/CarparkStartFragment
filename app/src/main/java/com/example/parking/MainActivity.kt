@@ -48,21 +48,23 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             delete_button.setOnClickListener{
-//                if (current == 1){
-//                    this@MainActivity.parkingFontEnd.status = false
-//                }else if (current == 2){
-//                    parking.status = false
-//                }else if (current == 3){
-//                    this@MainActivity.parkingFontEnd.status = false
-//                }else{
-//                    println("Error int = 0")
-//                }
-//                showInfo(it, current)
+                when(current){
+                    1 -> clearSlot(it, current)
+                    2 -> clearSlot(it, current)
+                    3 -> clearSlot(it, current)
+                }
             }
 
         }
 
 
+    }
+
+    private fun clearSlot(view: View, c: Int) {
+        parkingBlackEnd[c-1] = parkingBlackEnd[3]
+        parkingBlackEnd[c-1].slotNumber = c
+        showInfo(view, c)
+        changeColorSlotButton()
     }
 
     private fun updateSlot(view: View, c: Int) {
@@ -127,6 +129,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.invalidateAll()
+
         val inm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inm.hideSoftInputFromWindow(view.windowToken, 0)
     }
