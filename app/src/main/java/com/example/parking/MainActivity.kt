@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethod
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import com.example.parking.databinding.ActivityMainBinding
@@ -12,16 +11,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var parking1: Parking
-    private lateinit var parking2: Parking
-    private lateinit var parking3: Parking
+    private lateinit var parking: Parking
+    private var parkingBlackEnd: ArrayList<Parking> = ArrayList<Parking>(4)
     private var current: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        parking1 = Parking(" ", " ", " ", " ", false, 1)
-        parking2 = Parking(" ", " ", " ", " ", false, 2)
-        parking3 = Parking(" ", " ", " ", " ", false, 3)
+
+        parkingBlackEnd.add(Parking("jessica", "DC-1040", "Tesla", "0871280311", true, 1))
+        parkingBlackEnd.add(Parking(" ", " ", " ", " ", false, 2))
+        parkingBlackEnd.add(Parking(" ", " ", " ", " ", false, 3))
+        parkingBlackEnd.add(Parking("Name", "Licen plate", "Car brand", "Tel.", false, 4))
+        parking = Parking("Name", "Licen plate", "Car brand", "Tel.", false, 4)
         binding.apply {
             slot1Button.setOnClickListener{
                 current = 1
@@ -37,84 +38,64 @@ class MainActivity : AppCompatActivity() {
             }
 
             update_button.setOnClickListener{
-                if (current == 1){
-                    parking1.status = true
-                }else if (current == 2){
-                    parking2.status = true
-                }else if (current == 3){
-                    parking3.status = true
-                }else{
-                    println("Error int = 0")
-                }
-                showInfo(it, current)
+//                if (current == 1){
+//                    this@MainActivity.parkingFontEnd.status = true
+//                }else if (current == 2){
+//                    parking.status = true
+//                }else if (current == 3){
+//                    this@MainActivity.parkingFontEnd.status = true
+//                }else{
+//                    println("Error int = 0")
+//                }
+//                showInfo(it, current)
             }
             delete_button.setOnClickListener{
-                if (current == 1){
-                    parking1.status = false
-                }else if (current == 2){
-                    parking2.status = false
-                }else if (current == 3){
-                    parking3.status = false
-                }else{
-                    println("Error int = 0")
-                }
-                showInfo(it, current)
+//                if (current == 1){
+//                    this@MainActivity.parkingFontEnd.status = false
+//                }else if (current == 2){
+//                    parking.status = false
+//                }else if (current == 3){
+//                    this@MainActivity.parkingFontEnd.status = false
+//                }else{
+//                    println("Error int = 0")
+//                }
+//                showInfo(it, current)
             }
 
         }
-        binding.parking = parking1
-        binding.parking = parking2
-        binding.parking = parking3
+        binding.parking = parking
 
     }
 
     private fun showInfo(view: View, i: Int) {
-        binding.apply {
-            if (parking1.status.equals(true) && i == 1) {
-                println(current)
-                parking1.name = nameEditText.text.toString()
-                parking1.licensePlate = licensePlateEditText.text.toString()
-                parking1.carBrand = carBrandEditText.text.toString()
-                parking1.telNumber = telNumberEditText.text.toString()
-            }else if (parking1.status == false && i == 1){
-            parking1.name = " "
-            parking1.licensePlate = " "
-            parking1.carBrand = " "
-            parking1.telNumber = " "
+        var status = parkingBlackEnd.get(i-1).status
+        for (l in 0 until 3){
+            if (status && l == i-1){
+                println("slot is : " + (l))
+                binding.parking?.name = parkingBlackEnd.get(l).name
+                binding.parking?.licensePlate = parkingBlackEnd[l].licensePlate
+                binding.parking?.carBrand = parkingBlackEnd[l].carBrand
+                binding.parking?.telNumber = parkingBlackEnd[l].telNumber
+                slot1_button.text = parkingBlackEnd[l].licensePlate
+                break
+            }else if(l == i-1){
+                println("slot is : " + (l))
+                binding.apply {
+                    parking?.name = parkingBlackEnd[3].name
+                    parking?.licensePlate = parkingBlackEnd[3].licensePlate
+                    parking?.carBrand = parkingBlackEnd[3].carBrand
+                    parking?.telNumber = parkingBlackEnd[3].telNumber
+                }
+                when (l){
+                    0 -> slot1_button.text = "slot1"
+                    1 -> slot2_button.text = "slot2"
+                    3 -> slot3_button.text = "slot3"
+                }
+                break
             }
-
-            if (parking2.status == true && i == 2){
-                println(current)
-                parking2.name = nameEditText.text.toString()
-                parking2.licensePlate = licensePlateEditText.text.toString()
-                parking2.carBrand = carBrandEditText.text.toString()
-                parking2.telNumber = telNumberEditText.text.toString()
-
-            }else if (parking2.status == false && i == 2){
-                parking2.name = " "
-                parking2.licensePlate = " "
-                parking2.carBrand = " "
-                parking2.telNumber = " "
-            }
-
-            if (parking3.status == true && i == 3){
-                println(current)
-                parking3.name = nameEditText.text.toString()
-                parking3.licensePlate = licensePlateEditText.text.toString()
-                parking3.carBrand = carBrandEditText.text.toString()
-                parking3.telNumber = telNumberEditText.text.toString()
-            }else if (parking3.status == false && i == 3){
-                parking3.name = " "
-                parking3.licensePlate = " "
-                parking3.carBrand = " "
-                parking3.telNumber = " "
-            }
-
-            invalidateAll()
-            nameEditText.clearFocus()
         }
+        binding.invalidateAll()
         val inm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inm.hideSoftInputFromWindow(view.windowToken, 0)
-
     }
 }

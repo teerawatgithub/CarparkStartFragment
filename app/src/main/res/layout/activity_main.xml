@@ -12,7 +12,7 @@
             android:layout_height="match_parent"
             tools:context=".MainActivity">
         <Button
-                android:text="@={parking.licensePlate}"
+                android:text="@string/slot1_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/slot1_button"
@@ -23,7 +23,7 @@
                 android:layout_marginStart="16dp" android:fontFamily="@font/roboto"
                 android:background="@color/stateAvailable"/>
         <Button
-                android:text="@={parking.licensePlate}"
+                android:text="@string/slot2_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/slot2_button"
@@ -34,7 +34,7 @@
                 android:fontFamily="@font/roboto" android:background="@color/stateAvailable"
                 android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/name_edit_text"/>
         <Button
-                android:text="@={parking.licensePlate}"
+                android:text="@string/slot3_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/slot3_button"
