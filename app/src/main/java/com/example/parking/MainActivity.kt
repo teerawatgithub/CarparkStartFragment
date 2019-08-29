@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         parkingBlackEnd.add(Parking(" ", " ", " ", " ", false, 1))
         parkingBlackEnd.add(Parking(" ", " ", " ", " ", false, 2))
         parkingBlackEnd.add(Parking(" ", " ", " ", " ", false, 3))
@@ -101,7 +100,6 @@ class MainActivity : AppCompatActivity() {
         var status = parkingBlackEnd.get(i-1).status
         for (l in 0 until 3){
             if (status && l == i-1){
-                println("slot is : " + (l))
                 binding.parking?.name = parkingBlackEnd.get(l).name
                 binding.parking?.licensePlate = parkingBlackEnd[l].licensePlate
                 binding.parking?.carBrand = parkingBlackEnd[l].carBrand
@@ -113,7 +111,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 break
             }else if(l == i-1){
-                println("slot is : " + (l))
                 binding.apply {
                     parking?.name = parkingBlackEnd[3].name
                     parking?.licensePlate = parkingBlackEnd[3].licensePlate
@@ -128,6 +125,10 @@ class MainActivity : AppCompatActivity() {
                 break
             }
         }
+        tel_number_edit_text.clearFocus()
+        car_brand_edit_text.clearFocus()
+        name_edit_text.clearFocus()
+        license_plate_edit_text.clearFocus()
         binding.invalidateAll()
 
         val inm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
