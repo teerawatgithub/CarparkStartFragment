@@ -41,16 +41,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             update_button.setOnClickListener{
-//                if (current == 1){
-//                    this@MainActivity.parkingFontEnd.status = true
-//                }else if (current == 2){
-//                    parking.status = true
-//                }else if (current == 3){
-//                    this@MainActivity.parkingFontEnd.status = true
-//                }else{
-//                    println("Error int = 0")
-//                }
-//                showInfo(it, current)
+                when(current){
+                    1 -> updateSlot(it, current)
+                    2 -> updateSlot(it, current)
+                    3 -> updateSlot(it, current)
+                }
             }
             delete_button.setOnClickListener{
 //                if (current == 1){
@@ -68,6 +63,17 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun updateSlot(view: View, c: Int) {
+        parkingBlackEnd[c-1] = Parking(name_edit_text.text.toString(),
+            license_plate_edit_text.text.toString(),
+            car_brand_edit_text.text.toString(),
+            tel_number_edit_text.text.toString(),
+            true, c)
+
+        showInfo(view, c)
+        changeColorSlotButton()
     }
 
     private fun changeColorSlotButton() {
@@ -98,7 +104,11 @@ class MainActivity : AppCompatActivity() {
                 binding.parking?.licensePlate = parkingBlackEnd[l].licensePlate
                 binding.parking?.carBrand = parkingBlackEnd[l].carBrand
                 binding.parking?.telNumber = parkingBlackEnd[l].telNumber
-                slot1_button.text = parkingBlackEnd[l].licensePlate
+                when (l){
+                    0 -> slot1_button.text = parkingBlackEnd[l].licensePlate
+                    1 -> slot2_button.text = parkingBlackEnd[l].licensePlate
+                    2 -> slot3_button.text = parkingBlackEnd[l].licensePlate
+                }
                 break
             }else if(l == i-1){
                 println("slot is : " + (l))
